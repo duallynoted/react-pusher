@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import React from 'react';
+import Pusher from 'pusher-js'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      messages: []
+    }
+  }
+  componentDidMount() {
+    const pusher = new Pusher('bed53111627effd33580', {
+      cluster: 'us2',
+      forceTLS: true
+    })
+    const channel = pusher.subscribe('chat')
+    channel.bind('message', (message) => {
+      this.setState({ messages: [...this.state.messages, message] })
+    });
+  }
+  render() {
+    return (
+      <div className="App">
+        <h1>My Pusher Chat Room</h1>
+      </div>
+    );
+  }
 }
 
 export default App;
