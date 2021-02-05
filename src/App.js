@@ -1,6 +1,7 @@
 import React from 'react';
 import Pusher from 'pusher-js'
 import './App.css';
+import ChatRoom from './components/ChatRoom';
 
 class App extends React.Component {
   constructor() {
@@ -20,9 +21,11 @@ class App extends React.Component {
     });
   }
   render() {
+    const { messages } = this.state;
     return (
       <div className="App">
         <h1>My Pusher Chat Room</h1>
+        <ChatRoom messages={messages} />
       </div>
     );
   }
