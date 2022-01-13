@@ -24,7 +24,6 @@ class App extends React.Component {
     const { messages } = this.state;
     return (
       <div className="App">
-        <h1>My Pusher Chat Room</h1>
         <ChatRoom messages={messages} />
       </div>
     );

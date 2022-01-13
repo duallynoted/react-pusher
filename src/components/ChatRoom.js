@@ -9,7 +9,7 @@ export default function ChatRoom(props) {
         useState('');
     return (
         <div className='chat-room-wrapper'>
-            <div className='chat-room-messenger'>
+            <div className='chat-room-messages'>
                 {messages.map(renderMessenge)}
             </div>
             <div className='chat-room-message-input-wrapper'>
