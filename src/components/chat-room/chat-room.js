@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import './ChatRoom.css';
+import './chat-room.css';
 
 export default function ChatRoom(props) {
     const { messages } = props

@@ -1,7 +1,8 @@
 import React from 'react';
 import Pusher from 'pusher-js'
 import './App.css';
-import ChatRoom from './components/ChatRoom';
+import ChatRoom from './components/chat-room/chat-room';
+import LoginModal from './components/login-modal/login-modal';
 
 class App extends React.Component {
   constructor() {
@@ -25,6 +26,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <ChatRoom messages={messages} />
+        {/* <LoginModal /> */}
       </div>
     );
   }
