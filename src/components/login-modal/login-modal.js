@@ -11,7 +11,7 @@ export default function LoginModal(props) {
                 <h1 className='login-header'>Login</h1>
                 <form
                     className='login-form'
-                    onChange={handleLogin}>
+                    onSubmit={handleLogin}>
                     <input className='login-username'
                         onChange={handleUsernameChange}
                         placeholder="Username"

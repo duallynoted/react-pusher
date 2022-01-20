@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './chat-room.css';
 
 export default function ChatRoom(props) {
-    const { messages } = props
+    const { messages, username } = props
     const [messageInput, setMessageInput] =
         useState('');
     return (
@@ -24,9 +24,10 @@ export default function ChatRoom(props) {
         </div>
     )
     function renderMessenge(message, index) {
-        const { body } = message
+        const { author, body } = message
         return (
             <div key={index} className='chat-message'>
+                <span className='chat-message-author'>{author}</span>
                 <p className='chat-message-body'>{body}</p>
             </div>
         )
@@ -39,6 +40,7 @@ export default function ChatRoom(props) {
         if (key === 'Enter' || key === 13) {
             event.preventDefault()
             const payload = {
+                author: username,
                 body: messageInput
             }
             axios.post('/message', payload)
@@ -48,10 +50,12 @@ export default function ChatRoom(props) {
 }
 
 ChatRoom.defaultProps = {
-    messages: []
+    messages: [],
+    username: ''
 }
 
 ChatRoom.propTypes = {
-    messages: PropTypes.array
+    messages: PropTypes.array,
+    username: PropTypes.string
 }
 

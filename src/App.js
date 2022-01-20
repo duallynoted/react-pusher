@@ -8,7 +8,9 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      messages: []
+      messages: [],
+      loginVisible: true,
+      username: ''
     }
   }
   componentDidMount() {
@@ -22,14 +24,35 @@ class App extends React.Component {
     });
   }
   render() {
-    const { messages } = this.state;
+    const { loginVisible, messages, username } = this.state;
     return (
       <div className="App">
-        <ChatRoom messages={messages} />
-        {/* <LoginModal /> */}
+        <ChatRoom
+          messages={messages}
+          username={username} />
+        {loginVisible &&
+          <LoginModal
+            handleLogin={this.handleLogin}
+            handleUsernameChange={this.handleUsernameChange}
+            username={username} />
+        }
       </div>
     );
   }
+
+  handleLogin = (event) => {
+    event.preventDefault()
+    this.setState({
+      loginVisible: false
+    })
+  }
+
+  handleUsernameChange = (event) => {
+    this.setState({
+      username: event.target.value
+    })
+  }
+
 }
 
 export default App;
